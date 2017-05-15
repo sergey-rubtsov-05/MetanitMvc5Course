@@ -9,7 +9,7 @@ namespace BookStore.Controllers
 {
     public class HomeController : Controller
     {
-        BookContext db = new BookContext();
+        BookContext db = DbContextFactory.Create();
 
         public ActionResult Index()
         {
