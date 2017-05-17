@@ -9,7 +9,7 @@ namespace BookStore
     {
         protected void Application_Start()
         {
-            DbContextFactory.ConnectionString = $"Data Source='{Server.MapPath(@"~\App_Data\Bookstore.sqlite")}';Version=3";
+            DbContextFactory.DbFileName = Server.MapPath(@"~\App_Data\Bookstore.sqlite");
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

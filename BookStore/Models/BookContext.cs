@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+using System.Data.SQLite;
 
 namespace BookStore.Models
 {
@@ -7,14 +7,17 @@ namespace BookStore.Models
     {
         public static BookContext Create()
         {
-            return new BookContext(ConnectionString);
+            return new BookContext(DbFileName);
         }
 
-        public static string ConnectionString { get; set; }
+        public static string DbFileName { get; set; }
     }
+
     public class BookContext : DbContext
     {
-        public BookContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        public BookContext(string dbFileName) : base(
+            new SQLiteConnection(new SQLiteConnectionStringBuilder { DataSource = dbFileName, Version = 3 }
+                .ConnectionString), true)
         {
         }
 
